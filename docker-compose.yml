@@ -1,0 +1,17 @@
+php:
+  build: .
+  expose:
+    - "80"
+  ports:
+   - "8000:80"
+  volumes:
+   - ./www:/var/www/html
+  links:
+   - db
+db:
+  image: mysql:5.7
+  volumes:
+   - /var/lib/mysql
+  environment:
+   - MYSQL_ROOT_PASSWORD=phprs
+   - MYSQL_DATABASE=phprs
