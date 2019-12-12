@@ -5,7 +5,7 @@ php:
   ports:
    - "8000:80"
   volumes:
-   - ./www:/var/www/html
+   - .:/var/www/html
   links:
    - db
 db:
@@ -15,3 +15,11 @@ db:
   environment:
    - MYSQL_ROOT_PASSWORD=phprs
    - MYSQL_DATABASE=phprs
+app:
+    image: phpmyadmin/phpmyadmin:latest
+    links:
+      - db
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
